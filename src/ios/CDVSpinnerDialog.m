@@ -48,8 +48,10 @@
 
 - (UIView *)overlay {
     if (!_overlay) {
+        NSString * overlayOpacity = [self.commandDelegate.settings objectForKey:@"spinneroverlayopacity"];
+        overlayOpacity = overlayOpacity != nil ? overlayOpacity : @"0.35";
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
+        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:[overlayOpacity floatValue]];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
         [_indicator startAnimating];
